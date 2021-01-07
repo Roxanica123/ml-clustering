@@ -35,3 +35,7 @@ dendrogram-container {
     flex-direction: column;
     align-items: center;
 }
+
+p {
+    text-align: center;
+}

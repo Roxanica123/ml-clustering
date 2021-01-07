@@ -1,5 +1,4 @@
 export class Page {
-
     constructor(folderPath) {
         const pageContainer = document.querySelector('page-container');
         fetch(folderPath + "/page.html")

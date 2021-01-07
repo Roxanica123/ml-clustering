@@ -26,7 +26,7 @@ export class Menu {
             const subItems = item.querySelectorAll("ul li")
             subItems.forEach(subItem => {
                 const folder = item.getAttribute("name") + "/" + subItem.getAttribute("name")
-                subItem.addEventListener("click", () => { window.changePage(folder) })
+                subItem.onclick = () => { window.changePage(folder) };
             })
         })
     }

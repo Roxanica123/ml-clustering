@@ -1,7 +1,8 @@
 export class Menu {
-
-    constructor() {
-        const menuContainer = document.querySelector('menu-container');
+    page
+    constructor(page) {
+        this.page = page;
+        const menuContainer = this.addMenuContainer();
         fetch("./menu/menu.html")
             .then(content => content.text())
             .then(
@@ -11,6 +12,12 @@ export class Menu {
                     this.addEvents();
                 }
             )
+    }
+    addMenuContainer() {
+        const page_container = document.querySelector("page-container");
+        const menu_container = document.createElement("menu-container");
+        page_container.appendChild(menu_container);
+        return menu_container;
     }
     addStyleLink() {
         const head = document.querySelector('head');
@@ -25,8 +32,10 @@ export class Menu {
         menuItems.forEach(item => {
             const subItems = item.querySelectorAll("ul li")
             subItems.forEach(subItem => {
-                const folder = item.getAttribute("name") + "/" + subItem.getAttribute("name")
-                subItem.onclick = () => { window.changePage(folder) };
+                const folder = item.getAttribute("name") + "/" + subItem.getAttribute("name");
+                console.log(folder);
+                subItem.onclick = () => { this.page["add_" + item.getAttribute("name")](subItem.getAttribute("name")) };
+                //subItem.onclick = () => { window.changePage(folder) };
             })
         })
     }

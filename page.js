@@ -1,20 +1,55 @@
+import { Menu } from "./menu/menu.js"
+import { TemplateManager } from "./templates/template-manager.js"
+
 export class Page {
-    constructor(folderPath) {
-        const pageContainer = document.querySelector('page-container');
-        fetch(folderPath + "/page.html")
-            .then(content => content.text())
-            .then(
-                html_text => {
-                    pageContainer.insertAdjacentHTML('beforeend', html_text);
-                    this.addStyleLink(folderPath);
-                }
-            )
+    page
+    template_manager
+    constructor(page) {
+        this.page = page
+        this.template_manager = new TemplateManager(page);
+        this.clear_frames();
+        this.add_contents();
     }
-    addStyleLink(folderPath) {
-        const head = document.querySelector('head');
-        const link = document.createElement('link')
-        link.setAttribute("rel", "stylesheet");
-        link.setAttribute("href", folderPath + "/page.css");
-        head.appendChild(link);
+    clear_frames() {
+        const container = document.querySelector("frames-container");
+        container.remove();
     }
+    add_contents() {
+        const body = document.querySelector("body");
+        this.page_container = document.createElement("page-container");
+        body.prepend(this.page_container);
+        window.menu = new Menu(this);
+
+        const content_container = document.createElement("content-container");
+        this.page_container.append(content_container);
+        content_container.insertAdjacentHTML('beforeend', this.template_manager.dataset_template);
+    }
+    async add_model(type) {
+        this.get_clean_method_node().insertAdjacentHTML('beforeend', await this.template_manager.em_template(type));
+    }
+    async add_hierarchial(type) {
+
+        const method = this.get_clean_method_node();
+        const content =  await this.template_manager.hierarchial_template(type);
+        method.insertAdjacentHTML('afterbegin', content.dendrogram);
+        method.appendChild(content.show);
+    }
+    async add_partitional(type) {
+        const method = this.get_clean_method_node();
+        const shows = await this.template_manager.partitional_template(type);
+
+        method.appendChild(shows.normal);
+        method.appendChild(shows.plus);
+    }
+    get_clean_method_node() {
+        let method = document.querySelector("method");
+        if (method) {
+            method.innerHTML = "";
+        } else {
+            method = document.createElement("method");
+            document.querySelector("content-container").appendChild(method);
+        }
+        return method;
+    }
+
 }

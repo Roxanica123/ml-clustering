@@ -1,4 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
 .sidenav {
     position: fixed;
     width: 280px;
@@ -64,4 +69,54 @@
 .hidden li:active,
 .hidden li:focus {
     background-color: #323541;
+}
+
+content-container {
+    position: relative;
+    top: 0px;
+    left: 280px;
+    height: 100%;
+    width: calc(100vw - 280px);
+    overflow: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+dataset-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p {
+    text-align: center;
+}
+
+method,
+slideshow-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+buttons-container {
+    align-self: flex-end;
+    margin-right: 10%;
+}
+
+a {
+    margin: 5px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f1f1f1;
+    color: black;
+    cursor: pointer;
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
 }

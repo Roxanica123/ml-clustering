@@ -35,7 +35,6 @@ export class Menu {
                 const folder = item.getAttribute("name") + "/" + subItem.getAttribute("name");
                 console.log(folder);
                 subItem.onclick = () => { this.page["add_" + item.getAttribute("name")](subItem.getAttribute("name")) };
-                //subItem.onclick = () => { window.changePage(folder) };
             })
         })
     }

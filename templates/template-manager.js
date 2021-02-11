@@ -34,7 +34,7 @@ export class TemplateManager {
             import (path + "count.js")).count, -1);
         const dendrogram_template =
             `<dendrogram_container>
-                <iframe src="${path}/dendrogram.html" width="1010" height="900" style="border:0px;"></iframe>
+                <iframe src="${path}dendrogram.html" width="1010" height="900" style="border:0px;"></iframe>
             </dendrogram_container>`;
         return { dendrogram: dendrogram_template, show: slideshow.wrapper }
     }

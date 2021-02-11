@@ -11,7 +11,7 @@ export class TemplateManager {
         this.dataset_template =
             `<dataset_container>
                 <iframe src="${window.current_path}/data/points_with_numbers/${this.page}.html" width="1010" height="900" style="border:0px;"></iframe>
-                <p>If you want to test it out, the coordinates of these points can be found <a href="${window.current_path}/data/coordinates/${this.spage}.txt">here</a></p>
+                <p>If you want to test it out, the coordinates of these points can be found <a href="${window.current_path}/data/coordinates/${this.page}.txt">here</a></p>
             </dataset_container>`;
     }
     async em_template(type) {

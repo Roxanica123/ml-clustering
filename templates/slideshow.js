@@ -22,9 +22,9 @@ export class SlideShow {
         this.wrapper.appendChild(buttons_container);
 
         const previous = document.createElement("a");
-        previous.innerText = "< Previous"; 
+        previous.innerText = "< Previous";
         const next = document.createElement("a");
-        next.innerText="Next >";
+        next.innerText = "Next >";
 
         previous.setAttribute("class", "arrow left");
         previous.onclick = () => { this.change_frame(this.frame_number - this.increment); }
@@ -37,10 +37,9 @@ export class SlideShow {
     }
     create_frames() {
         for (let i = 1; i <= this.count; i++) {
-            const frame_html = `<iframe id="frame${i}" src="${this.path}${i}.html" style="display:none; border:0px;" class="frame" width="1010" height="900"></iframe>`;
+            const frame_html = `<iframe id="frame${i}" src="${this.path}${i}.html" style="display=none; border:0px;" class="frame" width="1010" height="900"></iframe>`;
             this.wrapper.insertAdjacentHTML("afterbegin", frame_html);
         }
-
     }
     change_frame(frame_number) {
         if (frame_number <= 0 || frame_number > this.count)

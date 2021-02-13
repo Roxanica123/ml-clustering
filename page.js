@@ -37,8 +37,13 @@ export class Page {
     async add_partitional(type) {
         const method = this.get_clean_method_node();
         const shows = await this.template_manager.partitional_template(type);
-
+        const kmeans = document.createElement("p");
+        kmeans.innerText="K-means";
+        const kmeans_plus = document.createElement("p");
+        kmeans_plus.innerText="K-means++";
+        method.appendChild(kmeans);
         method.appendChild(shows.normal);
+        method.appendChild(kmeans_plus)
         method.appendChild(shows.plus);
     }
     get_clean_method_node() {
